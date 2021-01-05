@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    body, html {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    
+    body {
+      background: radial-gradient(circle, #6d2717, #0c0000);
+    }
+    
+    canvas {
+      pointer-events: none;
+    }
+    
+    a, a:focus {
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 25px;
+      color: #ddd;
+    }
+    
+    .controls {
+      width: 500px;
+      display: inline-block;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    
+    .btn-group {
+      display: inline-block;
+    }
+    
+    .btn {
+      display: inline-block;
+      margin-bottom: 0;
+      font-weight: 500;
+      text-align: center;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      background-image: none;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      line-height: 1.5;
+      padding: 4px 15px;
+      font-size: 12px;
+      border-radius: 0px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      position: relative;
+      color: rgba(0, 0, 0, 0.65);
+      background-color: #fff;
+      border-color: #d9d9d9;
+    }
+    
+    .btn:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+    
+    .btn:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .btn.active {
+      color: #fff;
+      background-color: #dc7953;
+      border-color: #dc7953;
+    }
+    
+    .rotate {
+      margin-left: 20px;
+    }
+    
+    .rotate .btn {
+      border: none;
+      border-radius: 20px;
+    }
+    </style>
+</head>
+<div class="controls">
+  <div class="functions btn-group"></div>
+  <div class="rotate btn-group">
+    <div class="btn rotatex" data-rotate="x">rotatex</div>
+    <div class="btn rotatey" data-rotate="y">rotatey</div>
+    <div class="btn rotatez" data-rotate="z">rotatez</div>
+  </div>
+</div>
+<canvas width="2560" height="1000" style="min-width: 1000px; width: 100%; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%)"></canvas>
+<body>
+<script src="js/jquery.js"></script> 
+<script src="js/jwmerry.js"></script>
+<script> 
+  $(function(){
+
+  })
+</script>
+</body>
+</html>

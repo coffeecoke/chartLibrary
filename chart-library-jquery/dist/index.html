@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="module" id="chart" style="width:400px;height:300px;"></div>
+    <script src="js/require.js"></script>
+    <script src="require.config.js"></script>
+    <script>
+        require(['chartFactory'], function(chartFactory) {
+
+            // 渲染图表
+            function renderChart(chartId, theme) {
+                var chartObj = new chartFactory({
+                    id: chartId, // 图标容器ID
+                    themeType: theme || 'customed', // 主题，现在有两个  一个深色主题customed  一个theme4
+                    yAxis: [{ //如果坐标轴有两个，需要单独配置
+                        type: 'value',
+                        name: '亿元'
+                    }, {
+                        type: 'value',
+                        name: '（家）'
+                    }]
+                });
+                chartObj.bars({
+                    yAxisIndex: 1, //当前数据对应哪个坐标轴
+                    data: [{
+                        name: '2014-01',
+                        value: 240,
+                        group: 'A1'
+                    }, {
+                        name: '2014-02',
+                        value: 210,
+                        group: 'A1'
+                    }, {
+                        name: '2014-03',
+                        value: 142,
+                        group: 'A1'
+                    }, {
+                        name: '2014-04',
+                        value: 125,
+                        group: 'A1'
+                    }, {
+                        name: '2014-05',
+                        value: 112,
+                        group: 'A1'
+                    }, {
+                        name: '2014-06',
+                        value: 129,
+                        group: 'A1'
+                    }],
+
+                }).line({
+                    data: [{
+                        name: '2014-01',
+                        value: 20,
+                        group: 'A'
+                    }, {
+                        name: '2014-01',
+                        value: 40,
+                        group: 'B'
+                    }, {
+                        name: '2014-02',
+                        value: 100,
+                        group: 'A'
+                    }, {
+                        name: '2014-02',
+                        value: 10,
+                        group: 'B'
+                    }, {
+                        name: '2014-03',
+                        value: 12,
+                        group: 'A'
+                    }, {
+                        name: '2014-03',
+                        value: 16,
+                        group: 'B'
+                    }, {
+                        name: '2014-04',
+                        value: 15,
+                        group: 'A'
+                    }, {
+                        name: '2014-04',
+                        value: 14.5,
+                        group: 'B'
+                    }, {
+                        name: '2014-05',
+                        value: 12,
+                        group: 'A'
+                    }, {
+                        name: '2014-05',
+                        value: 18,
+                        group: 'B'
+                    }, {
+                        name: '2014-06',
+                        value: 19,
+                        group: 'A'
+                    }, {
+                        name: '2014-06',
+                        value: 16,
+                        group: 'B'
+                    }],
+                    yAxisIndex: 0,
+                })
+            }
+            renderChart("chart", "theme4")
+                //  end
+        })
+    </script>
+</body>
+
+</html>

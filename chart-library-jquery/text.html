@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="lineChart" style="width:700px;height:400px;"></div>
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/echarts.js"></script>
+  <script>
+    var myChart = echarts.init(document.getElementById('lineChart'))
+    var option = {
+        grid: {
+            top: 20,
+            bottom:40,
+            right:'5%',
+            left:'5%',
+
+        },
+        xAxis: {
+            type: 'category',
+            data: ['11/01', '11/02', '11/03', '11/04', '11/05', '11/06', '11/07'],
+            // axisLabel: {
+            //     formatter: function (value, idx) {
+            //         var date = new Date(value);
+            //         return idx === 0 ? value : [date.getMonth() + 1, date.getDate()].join('-');
+            //     }
+            // },
+            boundaryGap: false,
+            axisLabel: {
+                color:'#dde2e9',
+                fontSize:12
+            },
+            axisLine: {
+                lineStyle :{
+                    color:'#eff2f5'
+                }
+            },
+            axisTick: {
+                show: false
+            },
+
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                color:'#dde2e9',
+                fontSize:12
+            },
+            axisLine: {
+                lineStyle :{
+                    color:'#eff2f5'
+                }
+            },
+            splitLine: {
+                lineStyle:{
+                    color:'#eff2f5',
+                    type:'dashed'
+                }
+            },
+            axisTick: {
+                show: false
+            },
+            show: true
+        },
+        series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line',
+            symbol: 'none',
+            color: ['#0289ff'],
+            smooth: true,
+            areaStyle: { //区域填充样式
+                normal: {
+                    //线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(0,150,239,0.3)'
+                    },
+                        {
+                            offset: 1,
+                            color: 'rgba(0,253,252,0)'
+                        }
+                    ], false),
+                    shadowColor: 'rgba(53,142,215, 0.9)', //阴影颜色
+                    shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
+                }
+            }
+
+        }]
+    };
+    myChart.setOption(option)
+  </script>
+</body>
+</html>

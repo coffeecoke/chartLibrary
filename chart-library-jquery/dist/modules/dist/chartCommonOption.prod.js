@@ -1,0 +1,1 @@
+"use strict";define(["jquery","echarts"],function(e,t){return{color:[],tooltip:{trigger:"axis"},toolbox:{show:!1,feature:{mark:!0,dataView:{readOnly:!1},restore:!0,saveAsImage:!0}},grid:{left:"18%",right:"18%"},legend:{data:[],itemWidth:8,itemHeight:8},xAxis:[],yAxis:[],series:[]}});

@@ -1,0 +1,1 @@
+"use strict";define(["modules/chartDataFormate"],function(s){return{scatter:function(t){var r,a=this,n=this.initData(t),e=(r=t,function(){var t=s.FormateGroupData(n,"scatter",r.stack,r.yAxisIndex),e={legend:{data:t.category},series:t.series};_.merge(a.chartCommonOption,e),a.renderChart(a.chartCommonOption),a._next()});return this.tasks.push(e),this}}});
