@@ -8,10 +8,10 @@ define([
     var setChartTheme = function(themeType, opts) {
         var _this = this
         var themes = {
-            wonderland: '../json/wonderland.json', // 配置主题的路径,
-            theme4: '../json/theme4.json',
-            essos: '../json/essos.json',
-            customed: '../json/customed.json'
+            wonderland: './json/wonderland.json', // 配置主题的路径,
+            theme4: './json/theme4.json',
+            essos: './json/essos.json',
+            customed: './json/customed.json'
         }
         $.ajax({
             url: themes[themeType],

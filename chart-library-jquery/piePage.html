@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图表组件</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link href="./plugins/mxHeight/css/prism.css" rel="stylesheet">
+    <style>
+        html,
+        body {
+            height:100%;
+            font-family: "Microsoft YaHei";
+        }
+
+        .downCode {
+            line-height:66px;
+            color: #fff;
+        }
+        
+        .node-link {
+            line-height:66px;
+            color: #fff;
+        }
+        .header-right {
+            float:right;
+            padding-right:10px;
+        }
+        .wrap {
+            position: relative;
+            height:100%;
+            padding-top:67px;
+        }
+        .left-side {
+            width:60px;
+            height:100%;
+            float:left;
+            position: absolute;
+            top:0;
+            left:0;
+            padding-top:67px;
+            background-color: #f0f0f0;
+            box-shadow: 0 0 4px rgba(0,0,0,.4);
+        }
+        .container {
+            margin-left:60px;
+            height:100%;
+            overflow:hidden;
+            padding-top:50px;
+            position: relative;
+            background: #011c4b;
+        }
+        .menu {
+            width:100%;
+            padding:0;
+        }
+        .menu li {
+            position: relative;
+            width:100%;
+            padding-top:36px;
+            text-align: center;
+            font-size:14px;
+            color:#666;
+            margin-bottom:10px;
+            cursor: pointer;
+        }
+        .menu li.active:after {
+            content:'';
+            background-color: salmon;
+            position: absolute;
+            width:3px;
+            right:0;
+            top:0;
+            bottom:0;
+        }
+        .menu li.pie {
+            background:url(images/pie-icon.png) top center no-repeat;
+        }
+        .menu li.bar {
+            background:url(images/bar-icon.png) top center no-repeat;
+        }
+        .menu li.line {
+            background:url(images/line-icon.png) top center no-repeat;
+        }
+        .menu li.data {
+            background:url(images/data-icon.png) top center no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    
+  <div class="container">
+    <ul class="boxchart-theme-list">
+        <li data-theme="customed" class="dark active">暗黑</li>
+        <li data-theme="theme4" class="light">浅白</li>
+
+    </ul>
+    <div class="boxs">
+        <div class="box" data-chartobj="objWrap1">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>饼状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="pieChart1" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap2">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>饼状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="pieChart2" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap3">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>饼状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="pieChart3" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap4">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>饼状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="pieChart4" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap17">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>饼状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="pieChart5" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap5">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>折线图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="testChart2" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap6">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>面积图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="lineChart" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap7">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>折线柱状混合图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="lineBarChart" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap8">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>横向柱状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="testChart3" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap9">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>多类别柱状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="testChart31" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap10">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>单类别柱状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="testChart32" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap11">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>堆叠柱状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="testChart33" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap12">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>堆叠横向柱状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="testChart34" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap15" style="display:none">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>地图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="testChart5" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap16">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>象形柱状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="pictorialBar1" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap14">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>雷达图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="testChart0" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap13">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>散点图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="testChart4" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap20">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>盾牌图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module processFiled" id="processFiled"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="./js/mask.js"></script>
+    <script src="./plugins/mxHeight/js/prism.js"></script>
+    <script src="./js/require.js"></script>
+    <script src="./require.config.js"></script>
+    <script>
+        require(['jquery', 'chartFactory', 'echarts'], function($, chartFactory, echarts) {
+
+            window.echarts = echarts
+            var chartFactoryWindow = window.chartFactoryWindow = {}
+            var objWrap1 = chartFactoryWindow.objWrap1 = {
+                objContent: function renderChart(chartId, theme) {
+                    var pieChart = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed'
+                    })
+                    pieChart.pieLabel({
+                        data: [{
+                            name: '国有企业',
+                            value: 400
+                        }, {
+                            name: '民营企业',
+                            value: 200
+                        }, {
+                            name: '中外合资',
+                            value: 100
+                        }, {
+                            name: '外商独资',
+                            value: 230
+                        }, {
+                            name: '其他',
+                            value: 90
+                        }]
+                    })
+                }
+            }
+            objWrap1.objContent('pieChart1', 'customed');
+            var objWrap2 = chartFactoryWindow.objWrap2 = {
+                objContent: function renderChart(chartId, theme) {
+                    var pieChart = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed'
+                    })
+                    pieChart.pieLegend({
+                        data: [{
+                            name: '国有企业',
+                            value: 400
+                        }, {
+                            name: '民营企业',
+                            value: 200
+                        }, {
+                            name: '中外合资',
+                            value: 100
+                        }, {
+                            name: '外商独资',
+                            value: 230
+                        }, {
+                            name: '其他',
+                            value: 90
+                        }]
+                    })
+                }
+            }
+            objWrap2.objContent('pieChart2', 'customed');
+            var objWrap3 = chartFactoryWindow.objWrap3 = {
+                objContent: function renderChart(chartId, theme) {
+                    var pieChart = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed'
+                    })
+                    pieChart.pieRingLabel({
+                        radius: ['45%', '55%'],
+                        data: [{
+                            name: '国有企业',
+                            value: 40
+                        }, {
+                            name: '民营企业',
+                            value: 30
+                        }, {
+                            name: '中外合资',
+                            value: 20
+                        }, {
+                            name: '外商独资',
+                            value: 40
+                        }, {
+                            name: '其他',
+                            value: 30
+                        }]
+                    })
+                }
+            }
+            objWrap3.objContent('pieChart3', 'customed');
+
+            var objWrap4 = chartFactoryWindow.objWrap4 = {
+                objContent: function renderChart(chartId, theme) {
+                    var pieChart = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed'
+
+                    })
+                    pieChart.pieRingLegend({
+                        radius: ['45%', '55%'],
+                        data: [{
+                            name: '国有企业',
+                            value: 40
+                        }, {
+                            name: '民营企业',
+                            value: 30
+                        }, {
+                            name: '中外合资',
+                            value: 20
+                        }, {
+                            name: '外商独资',
+                            value: 40
+                        }, {
+                            name: '其他',
+                            value: 30
+                        }]
+                    })
+                }
+            }
+            objWrap4.objContent('pieChart4', 'customed');
+
+            var objWrap5 = chartFactoryWindow.objWrap5 = {
+                objContent: function renderChart(chartId, theme) {
+                    var chartObj = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed',
+                        yAxis: [{
+                            type: 'value',
+                            name: '(亿元)',
+                        }]
+                    });
+                    chartObj.line({
+                        data: [{
+                            name: '2014-01',
+                            value: 20,
+                            group: 'A'
+                        }, {
+                            name: '2014-01',
+                            value: 20,
+                            group: 'B'
+                        }, {
+                            name: '2014-02',
+                            value: 60,
+                            group: 'A'
+                        }, {
+                            name: '2014-02',
+                            value: 12,
+                            group: 'B'
+                        }, {
+                            name: '2014-03',
+                            value: 32,
+                            group: 'A'
+                        }, {
+                            name: '2014-03',
+                            value: 16,
+                            group: 'B'
+                        }, {
+                            name: '2014-04',
+                            value: 24,
+                            group: 'A'
+                        }, {
+                            name: '2014-04',
+                            value: 18,
+                            group: 'B'
+                        }, {
+                            name: '2014-05',
+                            value: 48,
+                            group: 'A'
+                        }, {
+                            name: '2014-05',
+                            value: 26,
+                            group: 'B'
+                        }, {
+                            name: '2014-06',
+                            value: 30,
+                            group: 'A'
+                        }, {
+                            name: '2014-06',
+                            value: 16,
+                            group: 'B'
+                        }],
+                        yAxisIndex: 0,
+                        color: '',
+                    })
+                }
+            }
+            objWrap5.objContent('testChart2', 'customed');
+
+            var objWrap6 = chartFactoryWindow.objWrap6 = {
+                objContent: function renderChart(chartId, theme) {
+                    var chartObj = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed',
+                        yAxis: [{
+                            type: 'value',
+                            name: '（亿元）'
+                        }]
+                    });
+                    chartObj.lineArea({
+                        data: [{
+                            name: '2014-01',
+                            value: 20,
+                            group: 'A'
+                        }, {
+                            name: '2014-01',
+                            value: 40,
+                            group: 'B'
+                        }, {
+                            name: '2014-02',
+                            value: 34,
+                            group: 'A'
+                        }, {
+                            name: '2014-02',
+                            value: 10,
+                            group: 'B'
+                        }, {
+                            name: '2014-03',
+                            value: 34,
+                            group: 'A'
+                        }, {
+                            name: '2014-03',
+                            value: 16,
+                            group: 'B'
+                        }, {
+                            name: '2014-04',
+                            value: 45,
+                            group: 'A'
+                        }, {
+                            name: '2014-04',
+                            value: 14.5,
+                            group: 'B'
+                        }, {
+                            name: '2014-05',
+                            value: 15,
+                            group: 'A'
+                        }, {
+                            name: '2014-05',
+                            value: 14.5,
+                            group: 'B'
+                        }],
+                    })
+                }
+            }
+            objWrap6.objContent('lineChart', 'customed');
+
+            var objWrap7 = chartFactoryWindow.objWrap7 = {
+                objContent: function renderChart(chartId, theme) {
+                    var chartObj = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed',
+                        yAxis: [{
+                            type: 'value',
+                            name: '亿元'
+                        }, {
+                            type: 'value',
+                            name: '（家）'
+                        }]
+                    });
+                    chartObj.bars({
+                        yAxisIndex: 1,
+                        data: [{
+                            name: '2014-01',
+                            value: 240,
+                            group: 'A1'
+                        }, {
+                            name: '2014-02',
+                            value: 210,
+                            group: 'A1'
+                        }, {
+                            name: '2014-03',
+                            value: 142,
+                            group: 'A1'
+                        }, {
+                            name: '2014-04',
+                            value: 125,
+                            group: 'A1'
+                        }, {
+                            name: '2014-05',
+                            value: 112,
+                            group: 'A1'
+                        }, {
+                            name: '2014-06',
+                            value: 129,
+                            group: 'A1'
+                        }],
+
+                    }).line({
+                        data: [{
+                            name: '2014-01',
+                            value: 20,
+                            group: 'A'
+                        }, {
+                            name: '2014-01',
+                            value: 40,
+                            group: 'B'
+                        }, {
+                            name: '2014-02',
+                            value: 100,
+                            group: 'A'
+                        }, {
+                            name: '2014-02',
+                            value: 10,
+                            group: 'B'
+                        }, {
+                            name: '2014-03',
+                            value: 12,
+                            group: 'A'
+                        }, {
+                            name: '2014-03',
+                            value: 16,
+                            group: 'B'
+                        }, {
+                            name: '2014-04',
+                            value: 15,
+                            group: 'A'
+                        }, {
+                            name: '2014-04',
+                            value: 14.5,
+                            group: 'B'
+                        }, {
+                            name: '2014-05',
+                            value: 12,
+                            group: 'A'
+                        }, {
+                            name: '2014-05',
+                            value: 18,
+                            group: 'B'
+                        }, {
+                            name: '2014-06',
+                            value: 19,
+                            group: 'A'
+                        }, {
+                            name: '2014-06',
+                            value: 16,
+                            group: 'B'
+                        }],
+                        yAxisIndex: 0,
+                        color: '',
+                    })
+                }
+            }
+            objWrap7.objContent('lineBarChart', 'customed');
+
+            //x轴为数据坐标
+            var objWrap8 = chartFactoryWindow.objWrap8 = {
+                objContent: function renderChart(chartId, theme) {
+                    var horizontalBarChart = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed',
+                        xAxis: [{
+                            type: 'value',
+                            name: '（亿元）'
+                        }]
+                    })
+                    horizontalBarChart.horizontalBar({
+                        data: [{
+                            name: '2014-01',
+                            value: 20,
+                            group: 'A1'
+                        }, {
+                            name: '2014-01',
+                            value: 40,
+                            group: 'B1'
+                        }, {
+                            name: '2014-02',
+                            value: 30,
+                            group: 'A1'
+                        }, {
+                            name: '2014-02',
+                            value: 10,
+                            group: 'B1'
+                        }, {
+                            name: '2014-03',
+                            value: 200,
+                            group: 'A1'
+                        }, {
+                            name: '2014-03',
+                            value: 60,
+                            group: 'B1'
+                        }, {
+                            name: '2014-04',
+                            value: 50,
+                            group: 'A1'
+                        }, {
+                            name: '2014-04',
+                            value: 45,
+                            group: 'B1'
+                        }, {
+                            name: '2014-05',
+                            value: 110,
+                            group: 'A1'
+                        }, {
+                            name: '2014-05',
+                            value: 80,
+                            group: 'B1'
+                        }, {
+                            name: '2014-06',
+                            value: 90,
+                            group: 'A1'
+                        }, {
+                            name: '2014-06',
+                            value: 60,
+                            group: 'B1'
+                        }]
+                    })
+                }
+            }
+            objWrap8.objContent('testChart3', 'customed');
+
+            var objWrap9 = chartFactoryWindow.objWrap9 = {
+                objContent: function renderChart(chartId, theme) {
+                    var barsChart = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed',
+                        yAxis: [{
+                            type: 'value',
+                            name: '（亿元）'
+                        }]
+                    })
+                    barsChart.bars({
+                        data: [{
+                            name: '2014-01',
+                            value: 20,
+                            group: 'A1'
+                        }, {
+                            name: '2014-01',
+                            value: 40,
+                            group: 'B1'
+                        }, {
+                            name: '2014-01',
+                            value: 30,
+                            group: 'C1'
+                        }, {
+                            name: '2014-02',
+                            value: 30,
+                            group: 'A1'
+                        }, {
+                            name: '2014-02',
+                            value: 10,
+                            group: 'B1'
+                        }, {
+                            name: '2014-02',
+                            value: 15,
+                            group: 'C1'
+                        }, {
+                            name: '2014-03',
+                            value: 200,
+                            group: 'A1'
+                        }, {
+                            name: '2014-03',
+                            value: 60,
+                            group: 'B1'
+                        }, {
+                            name: '2014-03',
+                            value: 30,
+                            group: 'C1'
+                        }, {
+                            name: '2014-04',
+                            value: 50,
+                            group: 'A1'
+                        }, {
+                            name: '2014-04',
+                            value: 45,
+                            group: 'B1'
+                        }, {
+                            name: '2014-04',
+                            value: 55,
+                            group: 'C1'
+                        }, {
+                            name: '2014-05',
+                            value: 110,
+                            group: 'A1'
+                        }, {
+                            name: '2014-05',
+                            value: 80,
+                            group: 'B1'
+                        }, {
+                            name: '2014-05',
+                            value: 62,
+                            group: 'C1'
+                        }, {
+                            name: '2014-06',
+                            value: 90,
+                            group: 'A1'
+                        }, {
+                            name: '2014-06',
+                            value: 60,
+                            group: 'B1'
+                        }, {
+                            name: '2014-06',
+                            value: 40,
+                            group: 'C1'
+                        }]
+                    })
+                }
+            }
+            objWrap9.objContent('testChart31', 'customed');
+
+            var objWrap10 = chartFactoryWindow.objWrap10 = {
+                objContent: function renderChart(chartId, theme) {
+                    var barsChart1 = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed',
+                        yAxis: [{
+                            type: 'value',
+                            name: '（亿元）'
+                        }]
+                    })
+                    barsChart1.bars({
+                        data: [{
+                            name: '2014-01',
+                            value: 20,
+                            group: 'A1'
+                        }, {
+                            name: '2014-02',
+                            value: 30,
+                            group: 'A1'
+                        }, {
+                            name: '2014-03',
+                            value: 200,
+                            group: 'A1'
+                        }, {
+                            name: '2014-04',
+                            value: 50,
+                            group: 'A1'
+                        }, {
+                            name: '2014-05',
+                            value: 110,
+                            group: 'A1'
+                        }, {
+                            name: '2014-06',
+                            value: 90,
+                            group: 'A1'
+                        }]
+                    })
+
+                }
+            }
+            objWrap10.objContent('testChart32', 'customed');
+
+            var objWrap11 = chartFactoryWindow.objWrap11 = {
+                objContent: function renderChart(chartId, theme) {
+                    var barsChart2 = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed',
+                        yAxis: [{
+                            type: 'value',
+                            name: '（亿元)',
+                            nameLocation: 'end',
+                            nameTextStyle: {
+                                fontSize: 12,
+                                padding: [0, 0, 0, -50]
+                            },
+                        }]
+                    })
+                    barsChart2.bars({
+                        stack: true,
+                        data: [{
+                            name: '2014-01',
+                            value: 20,
+                            group: 'A1'
+                        }, {
+                            name: '2014-01',
+                            value: 40,
+                            group: 'B1'
+                        }, {
+                            name: '2014-01',
+                            value: 30,
+                            group: 'C1'
+                        }, {
+                            name: '2014-02',
+                            value: 30,
+                            group: 'A1'
+                        }, {
+                            name: '2014-02',
+                            value: 10,
+                            group: 'B1'
+                        }, {
+                            name: '2014-02',
+                            value: 15,
+                            group: 'C1'
+                        }, {
+                            name: '2014-03',
+                            value: 200,
+                            group: 'A1'
+                        }, {
+                            name: '2014-03',
+                            value: 60,
+                            group: 'B1'
+                        }, {
+                            name: '2014-03',
+                            value: 30,
+                            group: 'C1'
+                        }, {
+                            name: '2014-04',
+                            value: 50,
+                            group: 'A1'
+                        }, {
+                            name: '2014-04',
+                            value: 45,
+                            group: 'B1'
+                        }, {
+                            name: '2014-04',
+                            value: 55,
+                            group: 'C1'
+                        }, {
+                            name: '2014-05',
+                            value: 110,
+                            group: 'A1'
+                        }, {
+                            name: '2014-05',
+                            value: 80,
+                            group: 'B1'
+                        }, {
+                            name: '2014-05',
+                            value: 62,
+                            group: 'C1'
+                        }, {
+                            name: '2014-06',
+                            value: 90,
+                            group: 'A1'
+                        }, {
+                            name: '2014-06',
+                            value: 60,
+                            group: 'B1'
+                        }, {
+                            name: '2014-06',
+                            value: 40,
+                            group: 'C1'
+                        }]
+                    })
+                }
+            }
+            objWrap11.objContent('testChart33', 'customed');
+            //堆叠横向柱状图
+            var objWrap12 = chartFactoryWindow.objWrap12 = {
+                objContent: function renderChart(chartId, theme) {
+                    var barsChart2 = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed',
+                        xAxis: [{
+                            type: 'value',
+                            name: '（亿元)'
+                        }]
+                    })
+                    barsChart2.horizontalBar({
+                        stack: true,
+                        data: [{
+                            name: '2014-01',
+                            value: 20,
+                            group: 'A1'
+                        }, {
+                            name: '2014-01',
+                            value: 40,
+                            group: 'B1'
+                        }, {
+                            name: '2014-01',
+                            value: 30,
+                            group: 'C1'
+                        }, {
+                            name: '2014-02',
+                            value: 30,
+                            group: 'A1'
+                        }, {
+                            name: '2014-02',
+                            value: 10,
+                            group: 'B1'
+                        }, {
+                            name: '2014-02',
+                            value: 15,
+                            group: 'C1'
+                        }, {
+                            name: '2014-03',
+                            value: 200,
+                            group: 'A1'
+                        }, {
+                            name: '2014-03',
+                            value: 60,
+                            group: 'B1'
+                        }, {
+                            name: '2014-03',
+                            value: 30,
+                            group: 'C1'
+                        }, {
+                            name: '2014-04',
+                            value: 50,
+                            group: 'A1'
+                        }, {
+                            name: '2014-04',
+                            value: 45,
+                            group: 'B1'
+                        }, {
+                            name: '2014-04',
+                            value: 55,
+                            group: 'C1'
+                        }, {
+                            name: '2014-05',
+                            value: 110,
+                            group: 'A1'
+                        }, {
+                            name: '2014-05',
+                            value: 80,
+                            group: 'B1'
+                        }, {
+                            name: '2014-05',
+                            value: 62,
+                            group: 'C1'
+                        }, {
+                            name: '2014-06',
+                            value: 90,
+                            group: 'A1'
+                        }, {
+                            name: '2014-06',
+                            value: 60,
+                            group: 'B1'
+                        }, {
+                            name: '2014-06',
+                            value: 40,
+                            group: 'C1'
+                        }]
+                    })
+                }
+            }
+            objWrap12.objContent('testChart34', 'customed');
+            // 散点图
+            var objWrap13 = chartFactoryWindow.objWrap13 = {
+                objContent: function renderChart(chartId, theme) {
+                    var scatterChart = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed',
+                        xAxis: [{
+                            name: '（人数）'
+                        }],
+                        yAxis: [{
+                            name: '（产值）'
+                        }],
+                    });
+                    scatterChart.scatter({
+                        data: [{
+                            group: '2018',
+                            value: [
+                                [4.0, 8.04],
+                                [8.0, 6.95],
+                                [3.0, 7.58],
+                                [9.0, 8.81],
+                                [1.0, 8.33],
+                            ],
+                            symbol: '',
+                            symbolSize: function(data) {
+                                var size = data[0] + data[1]
+                                return size * 2
+                            },
+                        }, {
+                            group: '2019',
+                            value: [
+                                [4.0, 9.96],
+                                [6.0, 7.24],
+                                [4.0, 4.26],
+                                [2.0, 9.84],
+                                [7.0, 4.82],
+                                [5.0, 5.68]
+                            ],
+                            symbol: '',
+                            symbolSize: function(data) {
+                                var size = data[0] + data[1]
+                                return size * 2
+                            },
+                        }]
+                    })
+                }
+            }
+            objWrap13.objContent('testChart4', 'customed');
+
+            var objWrap14 = chartFactoryWindow.objWrap14 = {
+                objContent: function renderChart(chartId, theme) {
+                    var radarChart = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed',
+                    })
+                    radarChart.radar({
+                        data: [{
+                            name: '数据1',
+                            group: 'A',
+                            value: 100,
+                            max: 300
+                        }, {
+                            name: '数据2',
+                            group: 'A',
+                            value: 200,
+                            max: 300
+                        }, {
+                            name: '数据3',
+                            group: 'A',
+                            value: 230,
+                            max: 300
+                        }, {
+                            name: '数据4',
+                            group: 'A',
+                            value: 100,
+                            max: 300
+                        }, {
+                            name: '数据5',
+                            group: 'A',
+                            value: 300,
+                            max: 300
+                        }],
+                    })
+                }
+            }
+            objWrap14.objContent('testChart0', 'customed');
+            //风险地图
+            var objWrap15 = chartFactoryWindow.objWrap15 = {
+                    objContent: function renderChart(chartId, theme) {
+                        var riskMapChart = new chartFactory({
+                            id: chartId,
+                            themeType: theme || 'customed',
+                            url: '',
+                        })
+                        riskMapChart.riskMap({
+                            geoJsonUrl: 'json/neimeng.json', //地图轮廓数据
+                            map: 'hebei',
+                            data: [{
+                                group: '低风险',
+                                geoCoordMap: {
+                                    "清水河县农村信用合作联社": [111.66198, 39.90922],
+                                    "呼和浩特市如意蒙银村镇银行股份有限公司": [111.7576, 40.8431],
+                                    "呼和浩特金桥河套村镇银行股份有限公司": [111.7077, 40.7813],
+                                    "内蒙古呼和浩特金谷农村商业银行股份有限公司": [111.4350, 40.4950],
+                                    "呼和浩特市玉泉蒙银村镇银行股份有限公司": [111.3959, 40.4740],
+                                },
+                                dataT: [{
+                                    name: '清水河县农村信用合作联社',
+                                    value: 20
+                                }, {
+                                    name: '呼和浩特市如意蒙银村镇银行股份有限公司',
+                                    value: 30
+                                }, {
+                                    name: '呼和浩特金桥河套村镇银行股份有限公司',
+                                    value: 38
+                                }, {
+                                    name: '内蒙古呼和浩特金谷农村商业银行股份有限公司',
+                                    value: '19'
+                                }, {
+                                    name: '呼和浩特市玉泉蒙银村镇银行股份有限公司',
+                                    value: '28'
+                                }, ]
+                            }, {
+                                group: '高风险',
+                                geoCoordMap: {
+                                    "呼和浩特金桥河套村镇银行股份有限公司": [111.7077, 40.7813],
+                                    "化德包商村镇银行有限责任公司": [114.01458, 41.8899],
+                                    "化德县农村信用合作联社": [114.035145, 41.911391],
+                                    "凉城县农村信用合作联社": [112.2926, 40.3151],
+                                    "察哈尔右翼后旗农村信用联社股份有限公司": [113.11882, 41.26893],
+                                    "丰镇市农村信用联社股份有限公司": [113.7451, 40.2615]
+                                },
+                                dataT: [{
+                                    name: '呼和浩特金桥河套村镇银行股份有限公司',
+                                    value: 40
+                                }, {
+                                    name: '化德包商村镇银行有限责任公司',
+                                    value: 46
+                                }, {
+                                    name: '化德县农村信用合作联社',
+                                    value: 58
+                                }, {
+                                    name: '凉城县农村信用合作联社',
+                                    value: 49
+                                }, {
+                                    name: '察哈尔右翼后旗农村信用联社股份有限公司',
+                                    value: 62
+                                }, {
+                                    name: '丰镇市农村信用联社股份有限公司',
+                                    value: 54
+                                }, ]
+                            }]
+                        })
+                    }
+                }
+                // objWrap15.objContent('testChart5', 'customed');
+
+
+            var objWrap16 = chartFactoryWindow.objWrap16 = {
+                objContent: function renderChart(chartId, theme) {
+                    var barsChart2 = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed',
+                    })
+                    barsChart2.pictorialBar({
+                        data: [{
+                            name: '名称1',
+                            value: 40,
+                            group: 'A1',
+                        }, {
+                            name: '名称2',
+                            value: 30,
+                            group: 'A1',
+                        }, {
+                            name: '名称3',
+                            value: 20,
+                            group: 'A1',
+                        }, {
+                            name: '名称4',
+                            value: 40,
+                            group: 'A1',
+                        }, {
+                            name: '名称5',
+                            value: 10,
+                            group: 'A1',
+                        }]
+                    })
+                }
+            }
+            objWrap16.objContent('pictorialBar1', 'customed');
+
+            var objWrap17 = chartFactoryWindow.objWrap17 = {
+                objContent: function renderChart(chartId, theme) {
+                    var pieChart = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed'
+                    })
+                    pieChart.pieLabel1({
+                        data: [{
+                            name: '国有企业',
+                            value: 40
+                        }, {
+                            name: '民营企业',
+                            value: 30
+                        }, {
+                            name: '中外合资',
+                            value: 20
+                        }, {
+                            name: '外商独资',
+                            value: 40
+                        }, {
+                            name: '其他',
+                            value: 30
+                        }]
+                    })
+                }
+            }
+            objWrap17.objContent('pieChart5', 'customed');
+
+            var objWrap20 = chartFactoryWindow.objWrap20 = {
+                objContent: function renderChart(chartId, theme) {
+                    var shieldChart = new chartFactory({
+                        id: chartId,
+                        type: 'others',
+                        themeType: theme || 'customed'
+                    })
+                    shieldChart.shield({
+                        name: '风险指数',
+                        value: 70
+                    })
+
+                }
+            }
+            objWrap20.objContent('processFiled', 'customed');
+            // 
+            $('.boxchart-theme-list li').on('click', function() {
+                $(this).addClass('active').siblings().removeClass('active')
+                window.boxTheme = $(this).data('theme');
+                var index = $(this).index();
+                // if (index == "0") {
+                //     $(document).find(".box").removeClass("toggle");
+                // } else {
+                //     $(document).find(".box").addClass("toggle");
+                // }
+                if (boxTheme == 'customed') {
+                    $(document).find(".box").css({
+                        backgroundColor: '#0f2a5f'
+                    });
+                    $('.container').css({
+                        backgroundColor: '#011c4b'
+                    });
+
+
+                } else if (boxTheme == 'theme4') {
+                    console.log($('.mask'))
+                    $(document).find(".box").css({
+                        backgroundColor: '#fff'
+                    });
+                    $('.container').css({
+                        backgroundColor: '#f5f5f5'
+                    });
+
+                }
+                renderBoxChartTheme(boxTheme)
+            })
+
+            function renderBoxChartTheme(theme) {
+                $('.module').each(function() {
+                    var _this = this
+                    var chartId = $(this).attr('id');
+                    var chart = echarts.getInstanceByDom(document.getElementById(chartId));
+                    if (chart) {
+                        echarts.dispose(chart);
+                        var chartobj = $(_this).parents('.box').data('chartobj');
+                        chartFactoryWindow[chartobj].objContent(chartId, theme);
+                    }
+
+                })
+                $('#processFiled').html('')
+                var shieldChart1 = new chartFactory({
+                    id: 'processFiled',
+                    type: 'others',
+                    themeType: theme || 'customed'
+                })
+                shieldChart1.shield({
+                    name: '风险指数',
+                    value: 70
+                })
+            }
+
+        })
+    </script>
+</body>
+
+</html>
