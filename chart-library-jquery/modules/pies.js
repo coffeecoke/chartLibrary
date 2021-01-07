@@ -204,6 +204,60 @@
           }]
       }
 
+      var pieRightLegendCommonOption = {
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b} : {d} %',
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'right',
+            // data: [],
+            top: "center",
+            show: true,
+            icon: 'circle',
+            // itemWidth: 8,
+            // itemHeight: 8,
+        },
+        series: [{
+            name: "",
+            type: 'pie',
+            radius: '45%',
+            center: ['30%', '50%'],
+            label: {
+                normal: {
+                    show: false
+                }
+            },
+        }]
+        }
+
+        var pieRightLegendCommonOption1 = {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{b} : {d} %',
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'right',
+                // data: [],
+                top: "center",
+                show: true,
+                icon: 'circle',
+            },
+            series: [{
+                name: "",
+                type: 'pie',
+                radius: ['35%', '45%'],
+                center: ['30%', '50%'],
+                label: {
+                    normal: {
+                        show: false
+                    }
+                },
+            }]
+            }
+
       // 带label的饼图
       var pieLabel = function(obj) {
           var _self = this;
@@ -545,11 +599,113 @@
           this.tasks.push(fn);
           return this;
       }
+
+       // 图例在右方的环形图
+       var pieRightLegend = function(obj) {
+        console.log(this)
+        var _self = this;
+        var data = this.initData(obj)
+        var fn = (function(obj) {
+            return function() {
+                var pie_datas = chartDataFormate.FormateNOGroupData(data);
+                var seData = pie_datas.data
+                var category = pie_datas.category
+                var option = {
+                    legend: [{
+                        left: "60%",
+                        orient: 'vertical',
+                        data: category,
+                        show: true,
+                        icon: 'circle',
+                        top: 'center',
+                        itemGap: 10,
+                        padding: 30,
+                        itemWidth: 8,
+                        itemHeight: 8,
+                        formatter: function(name) {
+                            let oa = pie_datas.data;
+                            let total = 0;
+                            oa.forEach(function(item, index) {
+                                total += item.value;
+                            });
+                            for (let i = 0; i < seData.length; i++) {
+                                if (name == seData[i].name) {
+                                    return name + '  ' + (seData[i].value / total * 100).toFixed(2) + '%';
+                                }
+                            }
+                        },
+                    }],
+                    series: [{
+                        name: obj.name || "",
+                        data: pie_datas.data,
+                    }]
+                };
+                var pieOptions = _.merge(pieRightLegendCommonOption, option);
+                console.log(444, pieOptions)
+                _self.renderChart(pieOptions)
+                _self._next()
+            }
+        })(obj)
+        this.tasks.push(fn);
+        return this;
+    }
+
+     // 图例在右方的环形图
+     var pieRightLabel = function(obj) {
+        console.log(this)
+        var _self = this;
+        var data = this.initData(obj)
+        var fn = (function(obj) {
+            return function() {
+                var pie_datas = chartDataFormate.FormateNOGroupData(data);
+                var seData = pie_datas.data
+                var category = pie_datas.category
+                var option = {
+                    legend: [{
+                        left: "60%",
+                        orient: 'vertical',
+                        data: category,
+                        show: true,
+                        icon: 'circle',
+                        top: 'center',
+                        itemGap: 10,
+                        padding: 30,
+                        itemWidth: 8,
+                        itemHeight: 8,
+                        formatter: function(name) {
+                            let oa = pie_datas.data;
+                            let total = 0;
+                            oa.forEach(function(item, index) {
+                                total += item.value;
+                            });
+                            for (let i = 0; i < seData.length; i++) {
+                                if (name == seData[i].name) {
+                                    return name + '  ' + (seData[i].value / total * 100).toFixed(2) + '%';
+                                }
+                            }
+                        },
+                    }],
+                    series: [{
+                        name: obj.name || "",
+                        data: pie_datas.data,
+                    }]
+                };
+                var pieOptions = _.merge(pieRightLegendCommonOption1, option);
+                console.log(444, pieOptions)
+                _self.renderChart(pieOptions)
+                _self._next()
+            }
+        })(obj)
+        this.tasks.push(fn);
+        return this;
+    }
       return {
           pieLabel: pieLabel,
           pieLabel1: pieLabel1,
           pieLegend: pieLegend,
           pieRingLabel: pieRingLabel,
-          pieRingLegend: pieRingLegend
+          pieRingLegend: pieRingLegend,
+          pieRightLegend: pieRightLegend,
+          pieRightLabel:pieRightLabel
       }
   });

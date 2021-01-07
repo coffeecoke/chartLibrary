@@ -150,7 +150,26 @@
                 </div>
             </div>
         </div>
-       
+        <div class="box" data-chartobj="objWrap6">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>饼状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="pieChart6" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-chartobj="objWrap7">
+            <div class="padding-20">
+                <div class="box-header">
+                    <h4>饼状图</h4>
+                </div>
+                <div class="box-content">
+                    <div class="module" id="pieChart7" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
     <script src="./js/jquery-2.1.4.min.js"></script>
@@ -304,6 +323,61 @@
             }
             objWrap17.objContent('pieChart5', 'customed');
 
+            var objWrap6 = chartFactoryWindow.objWrap6 = {
+                objContent: function renderChart(chartId, theme) {
+                    var pieChart = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed'
+                    })
+                    pieChart.pieRightLegend({
+                        data: [{
+                            name: '国有企业',
+                            value: 400
+                        }, {
+                            name: '民营企业',
+                            value: 200
+                        }, {
+                            name: '中外合资',
+                            value: 100
+                        }, {
+                            name: '外商独资',
+                            value: 230
+                        }, {
+                            name: '其他',
+                            value: 90
+                        }]
+                    })
+                }
+            }
+            objWrap6.objContent('pieChart6', 'customed');
+
+            var objWrap7 = chartFactoryWindow.objWrap7 = {
+                objContent: function renderChart(chartId, theme) {
+                    var pieChart = new chartFactory({
+                        id: chartId,
+                        themeType: theme || 'customed'
+                    })
+                    pieChart.pieRightLabel({
+                        data: [{
+                            name: '国有企业',
+                            value: 400
+                        }, {
+                            name: '民营企业',
+                            value: 200
+                        }, {
+                            name: '中外合资',
+                            value: 100
+                        }, {
+                            name: '外商独资',
+                            value: 230
+                        }, {
+                            name: '其他',
+                            value: 90
+                        }]
+                    })
+                }
+            }
+            objWrap7.objContent('pieChart7', 'customed');
             // 
             $('.boxchart-theme-list li').on('click', function() {
                 $(this).addClass('active').siblings().removeClass('active')
